@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { meshBounds, OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef } from "react";
 
 export default function Experience() {
@@ -35,6 +35,11 @@ export default function Experience() {
 
             <mesh
                 ref={cube}
+                // The meshbounds helper is very useful to boost performances, in fact, when using objects with many polygons, the performance
+                // can drop significantly when attaching listeners such as hovers or on clicks to these objects, so the solution which is also used in other games
+                // such as Starcraft, is to use this boundingSphere which is the one that will listen to the events, it will feel less "precise" but this will boost performances significantly
+                // Sadly, we cannot use this meshBounds on complex geometries such as the Hamburger because it's a group of meshes, thus why we are using this on the cube
+                raycast={meshBounds}
                 position-x={2}
                 scale={1.5}
                 onClick={eventHandler}
