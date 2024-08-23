@@ -15,6 +15,10 @@ export default function Experience() {
         );
     };
 
+    const stopSphereEventPropagation = (e) => {
+        e.stopPropagation();
+    };
+
     return (
         <>
             <OrbitControls makeDefault />
@@ -22,7 +26,7 @@ export default function Experience() {
             <directionalLight position={[1, 2, 3]} intensity={4.5} />
             <ambientLight intensity={1.5} />
 
-            <mesh position-x={-2}>
+            <mesh onClick={stopSphereEventPropagation} position-x={-2}>
                 <sphereGeometry />
                 <meshStandardMaterial color="orange" />
             </mesh>
