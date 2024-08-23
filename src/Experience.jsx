@@ -27,7 +27,33 @@ export default function Experience() {
                 <meshStandardMaterial color="orange" />
             </mesh>
 
-            <mesh ref={cube} position-x={2} scale={1.5} onClick={eventHandler}>
+            <mesh
+                ref={cube}
+                position-x={2}
+                scale={1.5}
+                onClick={eventHandler}
+                onContextMenu={() =>
+                    console.log(
+                        "this is an event regarding the context menu, which can be opened with a right click or on mobile with a long press"
+                    )
+                }
+                onDoubleClick={() => console.log("self explanatory")}
+                onPointerOver={() =>
+                    console.log(
+                        "ONLY in R3F this event is the same as onPointerEnter"
+                    )
+                }
+                onPointerEnter={() =>
+                    console.log(
+                        "in native javascript, there is a difference between these 2 events"
+                    )
+                }
+                onPointerMissed={() =>
+                    console.log(
+                        "triggered when user clicks outside of the listening object, useful when we wnat to know when the user clicks away"
+                    )
+                }
+            >
                 <boxGeometry />
                 <meshStandardMaterial color="mediumpurple" />
             </mesh>
