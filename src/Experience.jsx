@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef } from "react";
 
 export default function Experience() {
@@ -8,6 +8,8 @@ export default function Experience() {
     useFrame((state, delta) => {
         cube.current.rotation.y += delta * 0.2;
     });
+
+    const hamburger = useGLTF("./hamburger.glb");
 
     const eventHandler = () => {
         cube.current.material.color.set(
@@ -71,6 +73,16 @@ export default function Experience() {
                 <planeGeometry />
                 <meshStandardMaterial color="greenyellow" />
             </mesh>
+
+            <primitive
+                onClick={(e) => {
+                    // This way the on click won't be triggered for each burger component, but only for the one you're clicking on (such as the cheese or the top bun ecc)
+                    e.stopPropagation();
+                }}
+                object={hamburger.scene}
+                scale={0.25}
+                position-y={0.5}
+            />
         </>
     );
 }
