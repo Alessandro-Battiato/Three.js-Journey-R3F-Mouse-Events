@@ -47,11 +47,16 @@ export default function Experience() {
                         "ONLY in R3F this event is the same as onPointerEnter"
                     )
                 }
-                onPointerEnter={() =>
+                onPointerEnter={() => {
+                    document.body.style.cursor = "pointer";
                     console.log(
                         "in native javascript, there is a difference between these 2 events"
-                    )
-                }
+                    );
+                }}
+                onPointerLeave={() => {
+                    document.body.style.cursor = "default";
+                    console.log("when the pointer leaves the object");
+                }}
                 onPointerMissed={() =>
                     console.log(
                         "triggered when user clicks outside of the listening object, useful when we wnat to know when the user clicks away"
