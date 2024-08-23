@@ -2,6 +2,7 @@ import "./style.css";
 import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
+import { Bvh } from "@react-three/drei"; // Using the Bvh as you did here, will significantly boost performances like explained in the Experience.jsx file, but this time you will also cover the complex use cases such as the Hamburger object, so use BVH like this when you still need to use on clicks or other event listeners on complex objects
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
@@ -14,6 +15,8 @@ root.render(
             position: [-4, 3, 6],
         }}
     >
-        <Experience />
+        <Bvh>
+            <Experience />
+        </Bvh>
     </Canvas>
 );
